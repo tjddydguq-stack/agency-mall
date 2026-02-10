@@ -43,9 +43,9 @@ export default function AdminDashboard() {
         .from('inquiries')
         .select('*')
         .order('created_at', { ascending: false })
-        .limit(5);
+        .limit(5) as { data: Inquiry[] | null };
 
-      setRecentInquiries(inquiries || []);
+      setRecentInquiries((inquiries || []) as Inquiry[]);
       setIsLoading(false);
     };
 

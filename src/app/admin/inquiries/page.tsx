@@ -30,8 +30,8 @@ export default function InquiriesManagement() {
       query = query.eq('status', filter);
     }
 
-    const { data } = await query;
-    setInquiries(data || []);
+    const { data } = await query as { data: Inquiry[] | null };
+    setInquiries((data || []) as Inquiry[]);
     setIsLoading(false);
   };
 

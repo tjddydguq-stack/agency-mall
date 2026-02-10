@@ -29,6 +29,13 @@ interface ContactContent {
   address: string;
 }
 
+interface SiteContentRow {
+  id: string;
+  section: string;
+  content: Record<string, unknown>;
+  updated_at: string;
+}
+
 export default function ContentManagement() {
   const [isLoading, setIsLoading] = useState(true);
   const [isSaving, setIsSaving] = useState(false);
@@ -62,10 +69,10 @@ export default function ContentManagement() {
 
       const { data } = await supabase
         .from('site_content')
-        .select('*');
+        .select('*') as { data: SiteContentRow[] | null };
 
       if (data) {
-        data.forEach((item) => {
+        data.forEach((item: SiteContentRow) => {
           if (item.section === 'hero') {
             setHeroContent(item.content as unknown as HeroContent);
           } else if (item.section === 'about') {

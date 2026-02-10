@@ -29,9 +29,9 @@ export default function PortfolioManagement() {
     const { data } = await supabase
       .from('portfolio')
       .select('*')
-      .order('created_at', { ascending: false });
+      .order('created_at', { ascending: false }) as { data: Portfolio[] | null };
 
-    setPortfolios(data || []);
+    setPortfolios((data || []) as Portfolio[]);
     setIsLoading(false);
   };
 
