@@ -104,7 +104,8 @@ export default function ContentManagement() {
       for (const update of updates) {
         const { error } = await supabase
           .from('site_content')
-          .upsert(update, { onConflict: 'id' });
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          .upsert(update as any, { onConflict: 'id' });
 
         if (error) throw error;
       }
