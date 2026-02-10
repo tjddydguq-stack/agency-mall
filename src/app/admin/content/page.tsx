@@ -69,7 +69,7 @@ export default function ContentManagement() {
 
       const { data } = await supabase
         .from('site_content')
-        .select('*') as { data: SiteContentRow[] | null };
+        .select('*');
 
       if (data) {
         data.forEach((item: SiteContentRow) => {
